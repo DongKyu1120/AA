@@ -1,22 +1,17 @@
 import sys
-#sys.stdin=open("input.txt","rt")
+sys.stdin=open("input.txt","rt")
 
-n=int(input())
+n,m=map(int,input().split())
+a=list(map(int,input().split()))
+a.sort()
 
-pp=[]
-for i in range(n):
-    a,b=map(int,input().split())
-    pp.append((a,b))
-
-pp.sort(reverse=True)
-cnt=1
-(resH,resW)=pp[0]
-
-for i in range(1,n):
-    tempH,tempW=pp[i]
-    if tempH<=resH and tempW<=resW:
-        continue
+lt,rt=0,n-1
+while lt<=rt:
+    mid=(lt+rt)//2
+    if a[mid]==m:
+        print(mid+1)
+        break
+    elif a[mid]>m:
+        rt=mid-1
     else:
-        cnt+=1
-        resH,resW=pp[i]
-print(cnt)
+        lt=mid+1
